@@ -95,73 +95,188 @@
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-code"></i>
+            <div class="projects-header">
+                <h2 class="section-title">Project Workspace</h2>
+                <div class="projects-controls">
+                    <div class="search-container">
+                        <input type="text" id="projectSearch" placeholder="Search projects..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
                     </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Project One</h3>
-                        <p class="project-description">
-                            A modern web application built with React and Node.js. 
-                            Features real-time updates and responsive design.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
+                    <button id="addProjectBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New Project
+                    </button>
+                </div>
+            </div>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Workspace Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h3 id="modalProjectTitle">Project Title</h3>
+                    <div class="project-meta">
+                        <span class="project-status" id="modalProjectStatus">Active</span>
+                        <span class="project-date" id="modalProjectDate">Created: Jan 1, 2024</span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="saveProjectBtn" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <button id="closeModalBtn" class="btn btn-secondary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="workspace-tabs">
+                    <button class="tab-btn active" data-tab="overview">
+                        <i class="fas fa-info-circle"></i> Overview
+                    </button>
+                    <button class="tab-btn" data-tab="notes">
+                        <i class="fas fa-sticky-note"></i> Notes
+                    </button>
+                    <button class="tab-btn" data-tab="code">
+                        <i class="fas fa-code"></i> Code
+                    </button>
+                    <button class="tab-btn" data-tab="resources">
+                        <i class="fas fa-link"></i> Resources
+                    </button>
+                    <button class="tab-btn" data-tab="todos">
+                        <i class="fas fa-tasks"></i> Todos
+                    </button>
+                </div>
+                
+                <div class="tab-content active" id="overview-tab">
+                    <div class="form-group">
+                        <label for="projectTitle">Project Title</label>
+                        <input type="text" id="projectTitle" class="form-input" placeholder="Enter project title">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDescription">Description</label>
+                        <textarea id="projectDescription" class="form-textarea" placeholder="Describe your project"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectTags">Tags</label>
+                        <input type="text" id="projectTags" class="form-input" placeholder="Enter tags separated by commas">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectStatus">Status</label>
+                        <select id="projectStatus" class="form-select">
+                            <option value="active">Active</option>
+                            <option value="planning">Planning</option>
+                            <option value="development">Development</option>
+                            <option value="testing">Testing</option>
+                            <option value="completed">Completed</option>
+                            <option value="on-hold">On Hold</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="notes-tab">
+                    <div class="rich-editor">
+                        <div class="editor-toolbar">
+                            <button type="button" class="toolbar-btn" data-command="bold">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="italic">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="underline">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="insertUnorderedList">
+                                <i class="fas fa-list-ul"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="insertOrderedList">
+                                <i class="fas fa-list-ol"></i>
+                            </button>
+                        </div>
+                        <div id="notesEditor" class="editor-content" contenteditable="true" placeholder="Start writing your notes here..."></div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="code-tab">
+                    <div class="code-snippets">
+                        <div class="snippet-header">
+                            <h4>Code Snippets</h4>
+                            <button id="addSnippetBtn" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i> Add Snippet
+                            </button>
+                        </div>
+                        <div id="snippetsContainer">
+                            <!-- Code snippets will be added here -->
                         </div>
                     </div>
                 </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Project Two</h3>
-                        <p class="project-description">
-                            Mobile-first web app with progressive web app features. 
-                            Optimized for performance and accessibility.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
+                
+                <div class="tab-content" id="resources-tab">
+                    <div class="resources-section">
+                        <div class="resource-header">
+                            <h4>Resources & Links</h4>
+                            <button id="addResourceBtn" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i> Add Resource
+                            </button>
+                        </div>
+                        <div id="resourcesContainer">
+                            <!-- Resources will be added here -->
                         </div>
                     </div>
                 </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Project Three</h3>
-                        <p class="project-description">
-                            Data visualization dashboard with interactive charts. 
-                            Built with D3.js and modern CSS animations.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link" target="_blank" rel="noopener">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
-                            </a>
-                            <a href="#" class="project-link" target="_blank" rel="noopener">
-                                <i class="fab fa-github"></i> Source Code
-                            </a>
+                
+                <div class="tab-content" id="todos-tab">
+                    <div class="todos-section">
+                        <div class="todo-header">
+                            <h4>Todo List</h4>
+                            <button id="addTodoBtn" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i> Add Todo
+                            </button>
+                        </div>
+                        <div id="todosContainer">
+                            <!-- Todos will be added here -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div id="addProjectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Project</h3>
+                <button id="closeAddModalBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newProjectTitle">Project Title</label>
+                    <input type="text" id="newProjectTitle" class="form-input" placeholder="Enter project title">
+                </div>
+                <div class="form-group">
+                    <label for="newProjectDescription">Description</label>
+                    <textarea id="newProjectDescription" class="form-textarea" placeholder="Brief description of your project"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="newProjectTags">Tags</label>
+                    <input type="text" id="newProjectTags" class="form-input" placeholder="Enter tags separated by commas">
+                </div>
+                <div class="form-actions">
+                    <button id="createProjectBtn" class="btn btn-primary">Create Project</button>
+                    <button id="cancelCreateBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
