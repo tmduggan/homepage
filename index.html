@@ -26,6 +26,9 @@
                     <a href="#projects" class="nav-link">Projects</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#distillations" class="nav-link">Distillations</a>
+                </li>
+                <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
@@ -273,6 +276,137 @@
                 <div class="form-actions">
                     <button id="createProjectBtn" class="btn btn-primary">Create Project</button>
                     <button id="cancelCreateBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Distillations Section -->
+    <section id="distillations" class="distillations">
+        <div class="container">
+            <div class="distillations-header">
+                <h2 class="section-title">Knowledge Distillations</h2>
+                <div class="distillations-controls">
+                    <div class="search-container">
+                        <input type="text" id="distillationSearch" placeholder="Search distillations..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <button id="addDistillationBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> New Distillation
+                    </button>
+                </div>
+            </div>
+            
+            <div class="distillations-grid" id="distillationsGrid">
+                <!-- Distillations will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Distillation Modal -->
+    <div id="distillationModal" class="modal">
+        <div class="modal-content distillation-modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h3 id="modalDistillationTitle">Distillation Title</h3>
+                    <div class="distillation-meta">
+                        <span class="distillation-date" id="modalDistillationDate">Created: Jan 1, 2024</span>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button id="editDistillationBtn" class="btn btn-secondary">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                    <button id="saveDistillationBtn" class="btn btn-primary" style="display: none;">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                    <button id="closeDistillationModalBtn" class="btn btn-secondary">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <div class="distillation-content" id="distillationContent">
+                    <!-- Distillation content will be displayed here -->
+                </div>
+                
+                <div class="distillation-editor" id="distillationEditor" style="display: none;">
+                    <div class="form-group">
+                        <label for="distillationTitle">Title</label>
+                        <input type="text" id="distillationTitle" class="form-input" placeholder="Enter distillation title">
+                    </div>
+                    <div class="form-group">
+                        <label for="distillationDescription">Description</label>
+                        <textarea id="distillationDescription" class="form-textarea" placeholder="Brief description of this distillation"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="distillationTags">Tags</label>
+                        <input type="text" id="distillationTags" class="form-input" placeholder="Enter tags separated by commas">
+                    </div>
+                    <div class="form-group">
+                        <label for="distillationHtmlContent">Content (HTML)</label>
+                        <div class="html-editor-container">
+                            <div class="editor-toolbar">
+                                <button type="button" class="toolbar-btn" data-command="bold">
+                                    <i class="fas fa-bold"></i>
+                                </button>
+                                <button type="button" class="toolbar-btn" data-command="italic">
+                                    <i class="fas fa-italic"></i>
+                                </button>
+                                <button type="button" class="toolbar-btn" data-command="underline">
+                                    <i class="fas fa-underline"></i>
+                                </button>
+                                <button type="button" class="toolbar-btn" data-command="insertUnorderedList">
+                                    <i class="fas fa-list-ul"></i>
+                                </button>
+                                <button type="button" class="toolbar-btn" data-command="insertOrderedList">
+                                    <i class="fas fa-list-ol"></i>
+                                </button>
+                                <button type="button" class="toolbar-btn" data-command="createLink">
+                                    <i class="fas fa-link"></i>
+                                </button>
+                                <button type="button" class="toolbar-btn" data-command="insertTable">
+                                    <i class="fas fa-table"></i>
+                                </button>
+                            </div>
+                            <div id="distillationHtmlEditor" class="html-editor-content" contenteditable="true" placeholder="Enter your HTML content here..."></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Distillation Modal -->
+    <div id="addDistillationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Distillation</h3>
+                <button id="closeAddDistillationModalBtn" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="newDistillationTitle">Title</label>
+                    <input type="text" id="newDistillationTitle" class="form-input" placeholder="Enter distillation title">
+                </div>
+                <div class="form-group">
+                    <label for="newDistillationDescription">Description</label>
+                    <textarea id="newDistillationDescription" class="form-textarea" placeholder="Brief description of this distillation"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="newDistillationTags">Tags</label>
+                    <input type="text" id="newDistillationTags" class="form-input" placeholder="Enter tags separated by commas">
+                </div>
+                <div class="form-group">
+                    <label for="newDistillationContent">Initial Content</label>
+                    <textarea id="newDistillationContent" class="form-textarea" placeholder="Enter initial HTML content or start with a simple structure"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button id="createDistillationBtn" class="btn btn-primary">Create Distillation</button>
+                    <button id="cancelCreateDistillationBtn" class="btn btn-secondary">Cancel</button>
                 </div>
             </div>
         </div>
